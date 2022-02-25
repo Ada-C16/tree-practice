@@ -1,3 +1,6 @@
+from unittest.mock import NonCallableMagicMock
+
+
 class TreeNode:
     def __init__(self, key, val = None):
         if val == None:
@@ -14,15 +17,44 @@ class Tree:
     def __init__(self):
         self.root = None
 
-    # Time Complexity: 
-    # Space Complexity: 
+    # Time Complexity: O(log n)
+    # Space Complexity: O(1)
     def add(self, key, value = None):
-        pass
+        if self.root == None:
+            self.root = TreeNode(key, value)
+            return self.root
+        else:
+            return self.add_helper(self.root, key, value)
+        
+    def add_helper(self, cur, key, value):
+        if cur == None:
+            return TreeNode(key, value)
+        else:
+            if key < cur.key:
+                cur.left = self.add_helper(cur.left, key, value)
+                return cur
+            else:
+                cur.right = self.add_helper(cur.right, key, value)
+                return cur
 
-    # Time Complexity: 
-    # Space Complexity: 
+    # Time Complexity: O(log n)
+    # Space Complexity: O(1)
     def find(self, key):
-        pass
+        if self.root == None:
+            return None
+        else:
+            return self.find_recursive(self.root, key)
+    
+    def find_recursive (self, cur, key):
+        if cur == None:
+            return None
+        elif cur.key == key:
+            return cur.value
+        else: # cur.key != key
+            if key < cur.key:
+                return self.find_recursive(cur.left, key)
+            else:
+                return self.find_recursive(cur.right, key)
 
     # Time Complexity: 
     # Space Complexity: 
@@ -57,3 +89,19 @@ class Tree:
 #   # Useful for printing
     def to_s(self):
         return f"{self.inorder()}"
+
+
+tree = Tree()
+print(tree.root == None)
+tree.add(5, "Peter")
+tree.add(7, "Ada")
+tree.add(10)
+tree.add(3)
+tree.add(4)
+
+
+print(tree.root.key == 5)
+print(tree.root.right.key == 7)
+print(tree.root.right.right.key == 10)
+print(tree.root.left.key == 3)
+print(tree.root.left.right.key == 4)
