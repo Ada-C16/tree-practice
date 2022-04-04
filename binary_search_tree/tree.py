@@ -111,10 +111,34 @@ class Tree:
         return self.height_helper(self.root)
 
 #   # Optional Method
-#   # Time Complexity: 
-#   # Space Complexity: 
+#   # Time Complexity: O(n)
+#   # Space Complexity: O(n)
     def bfs(self):
-        pass
+        # create a 'q'
+        # add the root to it
+        # while there is something in the q
+        # dequeue and add its children
+        # when we dequeue, add the values to the 'expected answer' array
+        vals = []
+        if not self.root:
+            return vals
+
+        q = [self.root]
+        while q:
+            curr = q.pop(0)
+            vals.append({"key": curr.key, "value": curr.value})
+            if curr.left:
+                q.append(curr.left)
+            if curr.right:
+                q.append(curr.right)
+
+        return vals
+
+
+
+        
+        
+
 
         
 
