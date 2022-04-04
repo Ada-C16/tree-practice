@@ -111,7 +111,7 @@ class Tree:
         return self.height_helper(self.root)
 
 #   # Optional Method
-#   # Time Complexity: O(n)
+#   # Time Complexity: O(n^2) (due to using a list & deleting from the front of the list, could be O(n) with a better queue implementation
 #   # Space Complexity: O(n)
     def bfs(self):
         # create a 'q'
