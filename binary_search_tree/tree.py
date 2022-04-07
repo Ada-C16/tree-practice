@@ -14,20 +14,61 @@ class Tree:
     def __init__(self):
         self.root = None
 
-    # Time Complexity: 
-    # Space Complexity: 
+    
+    def add_helper(self, current_root, new_node):
+        if current_root is None:
+            return new_node
+
+        if new_node.key < current_root.key:
+            current_root.left = self.add_helper(current_root.left, new_node)
+        else:
+            current_root.right = self.add_helper(current_root.right, new_node)
+        
+        return current_root
+
+    # Time Complexity: O(log n) if tree is balanced, O(n) if unbalanced
+    # Space Complexity: O(1)
     def add(self, key, value = None):
-        pass
+        new_node = TreeNode(key, value)
+        if self.root is None:
+            self.root = new_node
+            return new_node
+        
+        self.add_helper(self.root, new_node)
+    
 
-    # Time Complexity: 
-    # Space Complexity: 
+    # Time Complexity: O(log n) if tree is balanced, O(n) if unbalanced
+    # Space Complexity: O(1)
     def find(self, key):
-        pass
+        if self.root is None:
+            return None
 
-    # Time Complexity: 
-    # Space Complexity: 
+        current = self.root
+
+        while current is not None:
+            if key < current.key:
+                current = current.left
+            elif key > current.key:
+                current = current.right
+            else:
+                return current.value
+        return None
+
+    def inorder_helper(self, current_node, items):
+        if current_node is not None:
+            self.inorder_helper(current_node.left, items)
+            items.append({"key": current_node.key, "value": current_node.value})
+            self.inorder_helper(current_node.right, items)
+
+    # Time Complexity: O(n)
+    # Space Complexity: O(n)
     def inorder(self):
-        pass
+        items = []
+
+        self.inorder_helper(self.root, items)
+
+        return items
+
 
     # Time Complexity: 
     # Space Complexity:     
