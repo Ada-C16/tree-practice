@@ -38,7 +38,7 @@ class Tree:
         return current_root 
 
     # Time Complexity: O(log n)
-    # Space Complexity: O(1)
+    # Space Complexity: O(log n)
     def add(self, key, value = None):
         # if there is no root...
         if not self.root:
@@ -61,7 +61,7 @@ class Tree:
         return self.find_helper(current_root.right, target_key)
       
     # Time Complexity: O(log n)
-    # Space Complexity: O(1)
+    # Space Complexity: O(log n)
     def find(self, key):
         target_node = self.find_helper(self.root, key)
 
@@ -111,7 +111,7 @@ class Tree:
         return items
 
     # Time Complexity: O(n)
-    # Space Complexity: O(1) 
+    # Space Complexity: O(n) or O(log n) ???
     def height(self):
         if self.root is None:
           return 0 
@@ -130,7 +130,7 @@ class Tree:
 
 #   # Optional Method
 #   # Time Complexity: O(n)
-#   # Space Complexity: O(1)
+#   # Space Complexity: O(n)
     def bfs(self):
         items = []
         self.bfs_helper(self.root, items)
