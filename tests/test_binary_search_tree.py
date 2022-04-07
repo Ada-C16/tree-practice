@@ -19,6 +19,16 @@ def tree_with_nodes(empty_tree) -> Tree():
     return empty_tree
 
 
+def test_add_function(empty_tree):
+    empty_tree.add(10)
+    empty_tree.add(15)
+    empty_tree.add(5)
+
+    assert empty_tree.root.key == 10
+    assert empty_tree.root.right.key == 15
+    assert empty_tree.root.left.key == 5
+
+
 def test_find_returns_none_for_empty_tree(empty_tree):
     assert empty_tree.find(5) == None
 
