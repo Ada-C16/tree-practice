@@ -14,15 +14,39 @@ class Tree:
     def __init__(self):
         self.root = None
 
-    # Time Complexity: 
-    # Space Complexity: 
-    def add(self, key, value = None):
-        pass
+    def add_helper(self, current_node, key, value):
+        if current_node == None:
+            return TreeNode(key, value)
+        
+        if key <= current_node.key:
+            current_node.left = self.add_helper(current_node.left, key, value)
+        else:
+            current_node.right = self.add_helper(current_node.right, key, value)
+        return current_node
 
-    # Time Complexity: 
-    # Space Complexity: 
+    # Time Complexity: O(n) recursive
+    # Space Complexity: O(1)
+    def add(self, key, value = None):
+        if self.root == None:
+            self.root = TreeNode(key, value)
+        else:
+            self.add_helper(self.root, key, value)
+
+    # Time Complexity: O(logN)
+    # Space Complexity: O(1)
     def find(self, key):
-        pass
+        if self.root == None:
+            return None
+        
+        current = self.root
+        while current != None:
+            if current.key == key:
+                return current.value
+            elif current.key < key:
+                current = current.right
+            else:
+                current = current.left
+        return None
 
     # Time Complexity: 
     # Space Complexity: 
