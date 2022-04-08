@@ -1,3 +1,6 @@
+from curses import noqiflush
+
+
 class TreeNode:
     def __init__(self, key, val = None):
         if val == None:
@@ -116,15 +119,27 @@ class Tree:
 
         return self.height_helper(self.root, height)
 
+    def bfs_helper(self, current_node):
+        level_by_level = []
+        q = [current_node]
+
+        while len(q) >= 1:
+            current_node = q.pop(0)
+
+            if current_node.left is not None:
+                q.append(current_node.left)
+            if current_node.right is not None:
+                q.append(current_node.right)
+            level_by_level.append({"key": current_node.key, "value": current_node.value})
+        return level_by_level
 
 #   # Optional Method
-#   # Time Complexity: 
-#   # Space Complexity: 
+#   # Time Complexity: O(n)
+#   # Space Complexity: O(n)
     def bfs(self):
-        pass
-
-        
-
+        if self.root is None:
+            return []
+        return self.bfs_helper(self.root)
 
 #   # Useful for printing
     def to_s(self):
