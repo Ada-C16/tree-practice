@@ -23,8 +23,8 @@ class Tree:
     def __init__(self):
         self.root = None
 
-    # Time Complexity: 
-    # Space Complexity: 
+    # Time Complexity: o(log n)
+    # Space Complexity: o(1) 
     def add(self, key, value = None):
         node = TreeNode(key, value)
         # if no root
@@ -46,11 +46,9 @@ class Tree:
 
             else:
                 parent.right = node
-        
 
-
-    # Time Complexity: 
-    # Space Complexity: 
+    # Time Complexity: o(log n)
+    # Space Complexity: o(1)
     def find(self, key):
         # no tree
         if self.root is None:
@@ -66,43 +64,40 @@ class Tree:
                 current = current.right
         return None
 
-
     def inorder_helper(self, current, items):
         if current is not None:
             self.inorder_helper(current.left, items)
             items.append({"key": current.key, "value": current.value})
             self.inorder_helper(current.right, items)
     
-    # Time Complexity: 
-    # Space Complexity: 
+    # Time Complexity: o(n)
+    # Space Complexity: o(n)
     def inorder(self):
         items = []
         self.inorder_helper(self.root, items)
         return items
         
-
     def preorder_helper(self, current, items):
         if current is not None:
             items.append({"key": current.key, "value": current.value})
             self.preorder_helper(current.left, items)
             self.preorder_helper(current.right, items)
-    # Time Complexity: 
-    # Space Complexity:     
+   
+    # Time Complexity: o(n)
+    # Space Complexity: o(n)     
     def preorder(self):
         items = []
         self.preorder_helper(self.root, items)
         return items
         
-
-    
     def postorder_helper(self, current, items):
         if current is not None:
             self.postorder_helper(current.left, items)
             self.postorder_helper(current.right, items)
             items.append({"key": current.key, "value": current.value})
 
-    # Time Complexity: 
-    # Space Complexity:     
+    # Time Complexity: o(n)
+    # Space Complexity: o(n)  
     def postorder(self):
         items = []
         self.postorder_helper(self.root, items)
@@ -121,10 +116,8 @@ class Tree:
 #   # Time Complexity: 
 #   # Space Complexity: 
     def bfs(self):
+        # too tired :/
         pass
-
-        
-
 
 #   # Useful for printing
     def to_s(self):
