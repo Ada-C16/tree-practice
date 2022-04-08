@@ -64,26 +64,57 @@ class Tree:
     # Space Complexity: O(n)
     def inorder(self):
         items = []
-
         self.inorder_helper(self.root, items)
+        return items
 
+    def preorder_helper(self, current_node, items):
+        if current_node is not None:
+            items.append({"key": current_node.key, "value": current_node.value})
+            self.preorder_helper(current_node.left, items)
+            self.preorder_helper(current_node.right, items)
+
+    # Time Complexity: O(n)
+    # Space Complexity: O(n)    
+    def preorder(self):
+        items = []
+        self.preorder_helper(self.root, items)
         return items
 
 
-    # Time Complexity: 
-    # Space Complexity:     
-    def preorder(self):
-        pass
+    def postorder_helper(self, current_node, items):
+        if current_node is not None:
+            self.postorder_helper(current_node.left, items)
+            self.postorder_helper(current_node.right, items)
+            items.append({"key": current_node.key, "value": current_node.value})
 
-    # Time Complexity: 
-    # Space Complexity:     
+    # Time Complexity: O(n)
+    # Space Complexity: O(n)  
     def postorder(self):
-        pass
+        items = []
+        self.postorder_helper(self.root, items)
+        return items
 
-    # Time Complexity: 
-    # Space Complexity:     
+    def height_helper(self, current_node, height):
+        if current_node is not None:
+            left= self.height_helper(current_node.left, height)
+            right= self.height_helper(current_node.right, height)
+            if left and right:
+                max_height = max(left, right)
+                return max_height + 1
+            elif left and not right:
+                return left + 1
+            elif right and not left:
+                return right + 1
+            return 1
+
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)     
     def height(self):
-        pass
+        height = 0
+        if self.root is None:
+            return height
+
+        return self.height_helper(self.root, height)
 
 
 #   # Optional Method
