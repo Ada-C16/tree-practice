@@ -13,6 +13,8 @@ class Tree:
     def __init__(self):
         self.root = None
 
+    # Time Complexity: O(log n)
+    # Space Complexity: O(log n)
     def add_helper(self, current, key, value):
         if current == None:
             return TreeNode(key, value)
@@ -22,8 +24,6 @@ class Tree:
             current.right = self.add_helper(current.right, key, value)
         return current
 
-    # Time Complexity: O(log n)
-    # Space Complexity: O(n)
     def add(self, key, value=None):
         if self.root == None:
             self.root = TreeNode(key, value)
@@ -32,14 +32,40 @@ class Tree:
 
     # Time Complexity:
     # Space Complexity:
+    def find_helper(self, current, key):
+        if current.key == key:
+            return current.value
+        if current.key >= key:
+            if not current.left:
+                return None
+            else:
+                return self.find_helper(current.left, key)
+        else:
+            if not current.right:
+                return None
+            else:
+                return self.find_helper(current.right, key)
+
     def find(self, key):
         if self.root == None:
             return None
+        else:
+            return self.find_helper(self.root, key)
+
+    def inorder_helper(self, current, items):
+        if current is not None:
+            self.inorder_helper(current.left, items)
+            items.append({"key": current.key, "value": current.value})
+            self.inorder_helper(current.right, items)
 
     # Time Complexity:
     # Space Complexity:
     def inorder(self):
-        pass
+        items = []
+
+        self.inorder_helper(self.root, items)
+
+        return items
 
     # Time Complexity:
     # Space Complexity:
@@ -61,13 +87,11 @@ class Tree:
 #   # Time Complexity:
 #   # Space Complexity:
 
-
     def bfs(self):
         pass
 
 
 #   # Useful for printing
-
 
     def to_s(self):
         return f"{self.inorder()}"
