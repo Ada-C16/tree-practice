@@ -26,7 +26,7 @@ class Tree:
         return current_node
 
     # Time Complexity: O(log n)
-    # Space Complexity: O(n)
+    # Space Complexity: O(log n)
     def add(self, key, value = None):
         if not self.root:
             self.root = TreeNode(key, value)
@@ -48,7 +48,7 @@ class Tree:
         return self.find_helper(current.right, key)
 
     # Time Complexity: O(log n)
-    # Space Complexity: O(n)
+    # Space Complexity: O(log n)
     def find(self, key):
         return self.find_helper(self.root, key)
 
@@ -102,8 +102,8 @@ class Tree:
         tree = []
         return self.postorder_helper(self.root, tree)
 
-    # Time Complexity: 
-    # Space Complexity:
+    # Time Complexity: O(n)
+    # Space Complexity: O(n)
     def height_counter(self, current):
         if not current:
             return 0
@@ -118,7 +118,28 @@ class Tree:
 #   # Time Complexity: 
 #   # Space Complexity: 
     def bfs(self):
-        pass
+        values = []
+        queue = []
+
+        if self.root:
+            queue.append(self.root)
+
+        while len(queue) > 0:
+            # Current becomes what was first item in queue
+            current = queue.pop(0)
+            if current.left:
+                queue.append(current.left)
+            if current.right:
+                queue.append(current.right)
+
+            values.append({
+                "key": current.key,
+                "value": current.value,
+            })
+
+        return values
+            
+
 
         
 
@@ -126,16 +147,3 @@ class Tree:
 #   # Useful for printing
     def to_s(self):
         return f"{self.inorder()}"
-
-
-# tree = Tree()
-# print(tree.root == None)
-# tree.add(5, "Peter")
-# tree.add(7, "Ada")
-# tree.add(4, "Lia")
-
-# print(tree.root.key)
-# print(tree.root.right.key)
-# print(tree.root.left.key)
-
-# print(tree.find(7))
