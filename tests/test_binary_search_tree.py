@@ -1,5 +1,5 @@
 import pytest
-from binary_search_tree.tree import Tree
+from binary_search_tree.tree import Tree, TreeNode
 
 
 @pytest.fixture()
@@ -17,6 +17,12 @@ def tree_with_nodes(empty_tree) -> Tree():
     empty_tree.add(25, "Kari")
 
     return empty_tree
+
+def test_find_without_add():
+    node = TreeNode(5, "Paul")
+    tree = Tree(node)
+
+    assert tree.find(5) == "Paul"
 
 
 def test_find_returns_none_for_empty_tree(empty_tree):
@@ -154,8 +160,8 @@ def test_postorder_on_tree_with_nodes(tree_with_nodes):
     assert answer == expected_answer
 
 
-def test_height_of_empty_tree_is_zero(empty_tree):
-    assert empty_tree.height() == 0
+def test_height_of_empty_tree_is_negative_one(empty_tree):
+    assert empty_tree.height() == -1
 
 
 def test_height_of_one_node_tree(empty_tree):
