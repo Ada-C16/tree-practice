@@ -90,10 +90,16 @@ class Tree:
         self.postorder_helper(self.root, items)
         return items
 
-    # Time Complexity: 
-    # Space Complexity:     
+    def height_helper(self, current):
+        if current == None:
+            return 0
+        else:
+            return max(self.height_helper(current.left), self.height_helper(current.right)) + 1
+
+    # Time Complexity: O(logn)
+    # Space Complexity: O(1)?    
     def height(self):
-        pass
+        return self.height_helper(self.root)
 
 
 #   # Optional Method
