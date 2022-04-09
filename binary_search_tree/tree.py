@@ -1,3 +1,6 @@
+from unittest import result
+
+
 class TreeNode:
     def __init__(self, key, val = None):
         if val == None:
@@ -24,15 +27,15 @@ class Tree:
             current_node.right = self.add_helper(current_node.right, key, value)
         return current_node
 
-    # Time Complexity: O(n) recursive
-    # Space Complexity: O(1)
+    # Time Complexity: O(logn)
+    # Space Complexity: O(logn)
     def add(self, key, value = None):
         if self.root == None:
             self.root = TreeNode(key, value)
         else:
             self.add_helper(self.root, key, value)
 
-    # Time Complexity: O(logN)
+    # Time Complexity: O(logn)
     # Space Complexity: O(1)
     def find(self, key):
         if self.root == None:
@@ -48,20 +51,44 @@ class Tree:
                 current = current.left
         return None
 
-    # Time Complexity: 
-    # Space Complexity: 
+    def inorder_helper(self, current, items):
+        if current != None:
+            self.inorder_helper(current.left, items)
+            items.append({"key": current.key, "value": current.value})
+            self.inorder_helper(current.right, items)
+
+    # Time Complexity: O(logn)
+    # Space Complexity: O(logn)
     def inorder(self):
-        pass
+        items = []
+        self.inorder_helper(self.root, items)
+        return items
 
-    # Time Complexity: 
-    # Space Complexity:     
+    def preorder_helper(self, current, items):
+        if current != None:
+            items.append({"key": current.key, "value": current.value})
+            self.preorder_helper(current.left, items)
+            self.preorder_helper(current.right, items)
+
+    # Time Complexity: O(logn)
+    # Space Complexity: O(logn)   
     def preorder(self):
-        pass
+        items = []
+        self.preorder_helper(self.root, items)
+        return items
 
-    # Time Complexity: 
-    # Space Complexity:     
+    def postorder_helper(self, current, items):
+        if current != None:
+            self.postorder_helper(current.left, items)
+            self.postorder_helper(current.right, items)
+            items.append({"key": current.key, "value": current.value})
+
+    # Time Complexity: O(logn)  
+    # Space Complexity: O(logn)  
     def postorder(self):
-        pass
+        items = []
+        self.postorder_helper(self.root, items)
+        return items
 
     # Time Complexity: 
     # Space Complexity:     
