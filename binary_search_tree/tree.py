@@ -115,8 +115,8 @@ class Tree:
 
 
 #   # Optional Method
-#   # Time Complexity: 
-#   # Space Complexity: 
+#   # Time Complexity: O(n)
+#   # Space Complexity: O(n)
     def bfs(self):
         values = []
         queue = []
