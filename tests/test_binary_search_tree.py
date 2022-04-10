@@ -155,7 +155,7 @@ def test_postorder_on_tree_with_nodes(tree_with_nodes):
 
 
 def test_height_of_empty_tree_is_zero(empty_tree):
-    assert empty_tree.height() == -1
+    assert empty_tree.height() == 0
 
 
 def test_height_of_one_node_tree(empty_tree):

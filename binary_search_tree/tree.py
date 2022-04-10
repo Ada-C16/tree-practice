@@ -108,7 +108,7 @@ class Tree:
 
     def height(self):
         if self.root is None:
-            return -1
+            return 0
             
         return self.height_helper(self.root)
 
