@@ -15,7 +15,7 @@ class Tree:
         self.root = None
 
     # Time Complexity: O(log n)
-    # Space Complexity: O(1)
+    # Space Complexity: O(log n) because there are log n function calls in the stack?
     def add(self, key, value = None):
         if self.root == None:
             self.root = TreeNode(key, value)
@@ -37,7 +37,7 @@ class Tree:
                 self.helper_add(key, value, current.right)
 
     # Time Complexity: O(log n)
-    # Space Complexity: 
+    # Space Complexity: O(log n) because there are log n function calls in the stack?
     def find(self, key):
         if self.root == None:
             return None
@@ -94,8 +94,8 @@ class Tree:
             self.helper_preorder(current.right, result)
 
 
-    # Time Complexity: 
-    # Space Complexity:     
+    # Time Complexity: O(n)
+    # Space Complexity: O(n) 
     def postorder(self):
         result = []
         self.helper_postorder(self.root, result)
@@ -111,8 +111,8 @@ class Tree:
             self.helper_postorder(current.right, result)
             result.append({"key": current.key, "value": current.value})
 
-    # Time Complexity: 
-    # Space Complexity:     
+    # Time Complexity: O(n)
+    # Space Complexity: O(n) because there are n function calls on the stack? 
     def height(self):
         max_height = [0]
         current_height = 0
