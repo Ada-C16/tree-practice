@@ -9,7 +9,6 @@ class TreeNode:
         self.right = None
         
 
-
 class Tree:
     def __init__(self):
         self.root = None
@@ -19,9 +18,17 @@ class Tree:
             return new_node
         
         if new_node.key < current_root.key:
-            current_root.left = self.addHelper(current_root.left, new_node)
+            if current_root.left is None:
+                # current_root.left = self.addHelper(current_root.left, new_node)
+                current_root.left = new_node
+            else:
+                self.addHelper(current_root.left, new_node)
         else:
-            current_root.right = self.addHelper(current_root.right, new_node)
+            if current_root.right is None:
+                # current_root.right = self.addHelper(current_root.right, new_node)
+                current_root.right = new_node
+            else:
+                self.addHelper(current_root.right, new_node)
 
     # Time Complexity: 
     # Space Complexity: 
@@ -36,12 +43,16 @@ class Tree:
     
     def findHelper(self, current_node, key):
         if not current_node:
+            print('in first case')
             return None
         if current_node.key == key:
+            print('in found case')
             return current_node.value
         if current_node.key > key:
+            print('in left case')
             return self.findHelper(current_node.left, key)
         if current_node.key < key:
+            print('in right case')
             return self.findHelper(current_node.right, key)    
 
     # Time Complexity: 
@@ -92,3 +103,19 @@ class Tree:
 #   # Useful for printing
     def to_s(self):
         return f"{self.inorder()}"
+
+
+# class Driver:
+#     my_tree = Tree()
+
+#     my_tree.add(5, "Peter")
+#     my_tree.add(3, "Paul")
+#     my_tree.add(1, "Mary")
+#     my_tree.add(10, "Karla")
+#     my_tree.add(15, "Ada")
+#     my_tree.add(25, "Kari")
+
+#     my_tree.find(1) == "Mary"
+#     # my_tree.find(25) == "Kari"
+#     # my_tree.add(13, "Alicia")
+#     # my_tree.find(13) == "Alicia"
