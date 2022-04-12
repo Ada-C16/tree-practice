@@ -62,45 +62,66 @@ class Tree:
         return self.findHelper(self.root, key)
 
     def inorderHelper(self, current, result):
-        if current is None:
-            return None
-        inorderHelper(current.left, result)
-        result.append(current.value)
-        inorderHelper(current.right, result)
-        return result
-    
+        if current:
+            self.inorderHelper(current.left, result)
+            result.append({"key": current.key, "value": current.value})
+            self.inorderHelper(current.right, result)
+
     # Time Complexity: 
     # Space Complexity: 
     def inorder(self):
+        #only instantiate once
         result = []
-        #inorderHelper(self.root, result)
+        self.inorderHelper(self.root, result)
         return result
 
-        # result = []
-        # if self.root.left:
-        #     result += self.root.left.inorder()
-
-        # result.append(self.root.value)
-
-        # if self.root.right:
-        #     result += self.root.right.inorder()
-
-        # return result
 
     # Time Complexity: 
-    # Space Complexity:     
+    # Space Complexity: 
+    def preorderHelper(self, current, result):
+        if current:
+            result.append({"key": current.key, "value": current.value})
+            self.preorderHelper(current.left, result)
+            self.preorderHelper(current.right, result)
+
+
     def preorder(self):
-        pass
+        result = []
+        self.preorderHelper(self.root, result)
+        return result
+
+    def postorderHelper(self, current, result):
+        if current:
+            self.postorderHelper(current.left, result)
+            self.postorderHelper(current.right, result)
+            result.append({"key": current.key, "value": current.value})
 
     # Time Complexity: 
     # Space Complexity:     
     def postorder(self):
-        pass
+        result = []
+        self.postorderHelper(self.root, result)
+        return result
 
+    def heightHelper(self, current):
+        if current is None:
+            return 0
+        else:
+            left = self.heightHelper(current.left)
+            right = self.heightHelper(current.right)
+            
+            if left > right:
+                return left + 1
+            else:
+                return right + 1
+    
     # Time Complexity: 
     # Space Complexity:     
     def height(self):
-        pass
+        current = self.root
+        if current is None:
+            return 0 
+        return self.heightHelper(current)
 
 
 #   # Optional Method
