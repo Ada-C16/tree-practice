@@ -10,8 +10,8 @@ class TreeNode:
 
 
 class Tree:
-    def __init__(self):
-        self.root = None
+    def __init__(self, root=None):
+        self.root = root
 
     # Time Complexity: O(log n)
     # Space Complexity: O(log n)
@@ -101,13 +101,12 @@ class Tree:
     # Space Complexity:
     def height(self):
         current = self.root
-        right = current.right
-        left = current.left
         if current == None:
             return 0
         else:
-            return 1 + (max(self.height(), self.height()))
-
+            right_tree = Tree(current.right)
+            left_tree = Tree(current.left)
+            return 1 + max(right_tree.height(), left_tree.height())
 
 #   # Optional Method
 #   # Time Complexity:
