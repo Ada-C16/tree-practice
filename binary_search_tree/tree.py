@@ -61,19 +61,31 @@ class Tree:
         #if it's empty return None
         return self.findHelper(self.root, key)
 
+    def inorderHelper(self, current, result):
+        if current is None:
+            return None
+        inorderHelper(current.left, result)
+        result.append(current.value)
+        inorderHelper(current.right, result)
+        return result
+    
     # Time Complexity: 
     # Space Complexity: 
     def inorder(self):
         result = []
-        if self.root.left:
-            result += self.root.left.inorder()
-
-        result.append(self.root.value)
-
-        if self.root.right:
-            result += self.root.right.inorder()
-
+        #inorderHelper(self.root, result)
         return result
+
+        # result = []
+        # if self.root.left:
+        #     result += self.root.left.inorder()
+
+        # result.append(self.root.value)
+
+        # if self.root.right:
+        #     result += self.root.right.inorder()
+
+        # return result
 
     # Time Complexity: 
     # Space Complexity:     
@@ -119,3 +131,16 @@ class Tree:
 #     # my_tree.find(25) == "Kari"
 #     # my_tree.add(13, "Alicia")
 #     # my_tree.find(13) == "Alicia"
+
+
+    #def inorder(self):
+        # result = []
+        # if self.root.left:
+        #     result += self.root.left.inorder()
+
+        # result.append(self.root.value)
+
+        # if self.root.right:
+        #     result += self.root.right.inorder()
+
+        # return result
