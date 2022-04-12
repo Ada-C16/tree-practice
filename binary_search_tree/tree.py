@@ -69,18 +69,44 @@ class Tree:
 
     # Time Complexity:
     # Space Complexity:
+    def preorder_helper(self, current, items):
+        if current is not None:
+            items.append({"key": current.key, "value": current.value})
+            self.preorder_helper(current.left, items)
+            self.preorder_helper(current.right, items)
+
     def preorder(self):
-        pass
+        items = []
+
+        self.preorder_helper(self.root, items)
+
+        return items
 
     # Time Complexity:
     # Space Complexity:
+    def postorder_helper(self, current, items):
+        if current is not None:
+            self.postorder_helper(current.left, items)
+            self.postorder_helper(current.right, items)
+            items.append({"key": current.key, "value": current.value})
+
     def postorder(self):
-        pass
+        items = []
+
+        self.postorder_helper(self.root, items)
+
+        return items
 
     # Time Complexity:
     # Space Complexity:
     def height(self):
-        pass
+        current = self.root
+        right = current.right
+        left = current.left
+        if current == None:
+            return 0
+        else:
+            return 1 + (max(self.height(), self.height()))
 
 
 #   # Optional Method
