@@ -34,10 +34,22 @@ class Tree:
             return
         self.add_helper(self.root, new_node)
 
-    # Time Complexity:
-    # Space Complexity:
+    # Time Complexity: O(log(n))
+    # Space Complexity: O(1)
     def find(self, key):
-        pass
+        if self.root is None:
+            return None
+
+        current_root = self.root
+
+        while current_root is not None:
+            if current_root.key == key:
+                return current_root.value
+            elif current_root.key > key:
+                current_root = current_root.left
+            else:
+                current_root = current_root.right
+        return None
 
     def inorder_helper(self, current_root, items):
         if current_root is not None:
@@ -46,32 +58,58 @@ class Tree:
                          "value": current_root.value})
             self.inorder_helper(current_root.right, items)
 
-    # Time Complexity:
-    # Space Complexity:
+    # Time Complexity: O(n)
+    # Space Complexity: O(n)
     def inorder(self):
         items = []
 
         self.inorder_helper(self.root, items)
         return items
 
-    # Time Complexity:
-    # Space Complexity:
+    # Time Complexity: O(n)
+    # Space Complexity: O(n)
+    def preorder_helper(self, current_root, items):
+        if current_root is not None:
+            items.append({"key": current_root.key,
+                         "value": current_root.value})
+            self.preorder_helper(current_root.left, items)
+            self.preorder_helper(current_root.right, items)
+
     def preorder(self):
         # Root
         # Left
         # Right
-        pass
+        items = []
 
-    # Time Complexity:
-    # Space Complexity:
+        self.preorder_helper(self.root, items)
+        return items
+
+    # Time Complexity: O(n)
+    # Space Complexity: O(n)
+
+    def postorder_helper(self, current_root, items):
+        if current_root is not None:
+            self.postorder_helper(current_root.left, items)
+            self.postorder_helper(current_root.right, items)
+            items.append({"key": current_root.key,
+                         "value": current_root.value})
+
     def postorder(self):
+        items = []
+        self.postorder_helper(self.root, items)
+        return items
 
-        pass
+    # Time Complexity: O(n)
+    # Space Complexity: O(n)
+    def height_helper(self, current_root):
+        if current_root is None:
+            return 0
+        return 1 + max(self.height_helper(current_root.left), self.height_helper(current_root.right))
 
-    # Time Complexity:
-    # Space Complexity:
     def height(self):
-        pass
+        if self.root is None:
+            return 0
+        return self.height_helper(self.root)
 
 
 #   # Optional Method
