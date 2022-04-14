@@ -18,7 +18,6 @@ def tree_with_nodes(empty_tree) -> Tree():
 
     return empty_tree
 
-
 def test_find_returns_none_for_empty_tree(empty_tree):
     assert empty_tree.find(5) == None
 
@@ -26,7 +25,6 @@ def test_find_returns_none_for_empty_tree(empty_tree):
 def test_can_find_single_root_node(empty_tree):
     empty_tree.add(25, "Kari")
     assert empty_tree.find(25) == "Kari"
-
 
 def test_add_and_find(tree_with_nodes):
     assert tree_with_nodes.find(5) == "Peter"
