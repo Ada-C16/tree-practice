@@ -103,8 +103,8 @@ class Tree:
         self.postorder_helper(self.root, items)
         return items
 
-    # Time Complexity: 
-    # Space Complexity:     
+    # Time Complexity: o(n)
+    # Space Complexity: o(n)  
     def height(self):
         if self.root:
             return self.root.height()
