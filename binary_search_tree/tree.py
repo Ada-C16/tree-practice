@@ -79,6 +79,7 @@ class Tree:
     # Time Complexity: 
     # Space Complexity: 
     def preorderHelper(self, current, result):
+        #The "shape" -> "<"
         if current:
             result.append({"key": current.key, "value": current.value})
             self.preorderHelper(current.left, result)
@@ -91,6 +92,7 @@ class Tree:
         return result
 
     def postorderHelper(self, current, result):
+        #The "shape" -> ">"
         if current:
             self.postorderHelper(current.left, result)
             self.postorderHelper(current.right, result)
