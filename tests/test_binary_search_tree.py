@@ -83,7 +83,7 @@ def test_inorder_with_nodes(tree_with_nodes):
 
 
 def test_preorder_on_empty_tree(empty_tree):
-    assert empty_tree.preorder() == []
+    assert empty_tree.preorder2() == []
 
 
 def test_preorder_on_tree_with_nodes(tree_with_nodes):
@@ -114,7 +114,7 @@ def test_preorder_on_tree_with_nodes(tree_with_nodes):
         }
     ]
 
-    answer = tree_with_nodes.preorder()
+    answer = tree_with_nodes.preorder2()
     assert answer == expected_answer
 
 

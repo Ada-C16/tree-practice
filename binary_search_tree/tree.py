@@ -92,7 +92,21 @@ class Tree:
             result.append({"key": current.key, "value": current.value})
             self.helper_preorder(current.left, result)
             self.helper_preorder(current.right, result)
+    
+    def preorder2(self):
+        result = []
+        if not self.root:
+            return result
+        stack = [self.root]
+        while len(stack) != 0:
+            current = stack.pop()
+            result.append({"key": current.key, "value": current.value})
+            if current.right:
+                stack.append(current.right)
+            if current.left:
+                stack.append(current.left)
 
+        return result
 
     # Time Complexity: O(n)
     # Space Complexity: O(n) 
@@ -136,7 +150,21 @@ class Tree:
 #   # Time Complexity: 
 #   # Space Complexity: 
     def bfs(self):
-        pass
+        result = []
+        nodes = []
+        if not self.root:
+            return result
+        else:
+            nodes.append(self.root)
+        while nodes:
+            current = nodes[0]
+            result.append({"key": current.key, "value": current.value})
+            if current.left:
+                nodes.append(current.left)
+            if current.right:
+                nodes.append(current.right)
+            nodes.remove(current)
+        return result
 
 
 #   # Useful for printing
