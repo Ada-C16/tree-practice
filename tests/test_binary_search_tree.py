@@ -164,6 +164,7 @@ def test_height_of_one_node_tree(empty_tree):
 
 
 def test_height_of_many_node_tree(tree_with_nodes):
+    tree_with_nodes.height()
     assert tree_with_nodes.height() == 4
     tree_with_nodes.add(2, "pasta")
     tree_with_nodes.add(2.5, "bread")
