@@ -13,10 +13,10 @@ class Tree:
     def __init__(self):
         self.root = None
 
+    # For Time and Space Complexity, I am making the assumption the tree is balanced
+
     # Time Complexity: O(log n) because, if the tree is balanced, then we reduce the items we look through by half with each iteration
     # Space Complexity: O(1) because we are not creating more space, in the long run
-
-    # For Time and Space Complexity, I am making the assumption the tree is balanced
     def add(self, key, value=None):
         node = TreeNode(key, value)
 
@@ -37,9 +37,8 @@ class Tree:
 
         return current
 
-    # Time Complexity: O(log n)
+    # Time Complexity: O(log n) because we cut our search in half each pass through
     # Space Complexity:  O(1)
-
     def find(self, key):
         current = self.root
         if current is None:
@@ -53,8 +52,8 @@ class Tree:
             elif key > current.key:
                 current = current.right
 
-    # Time Complexity: O(n)
-    # Space Complexity:O(1) complexity of the sort, not the return
+    # Time Complexity: O(n) since we visit every node to collect the value of it and append it
+    # Space Complexity:O(n) since we create & increase the size of the array we return
     def inorder(self):
         current = self.root
         arr = []
@@ -75,7 +74,7 @@ class Tree:
         return arr
 
     # Time Complexity: O(n)
-    # Space Complexity:O(1)
+    # Space Complexity:O(n)
     def preorder(self):
         current = self.root
         arr = []
@@ -95,9 +94,8 @@ class Tree:
 
         return arr
 
-    # Time Complexity: O(log n)
-    # Space Complexity:O(1)
-
+    # Time Complexity: O(n)
+    # Space Complexity:O(n)
     def postorder(self):
         current = self.root
         arr = []
@@ -117,8 +115,8 @@ class Tree:
 
         return arr
 
-    # Time Complexity: O(n)
-    # Space Complexity:O(1)
+    # Time Complexity: O(n) since we visit every node
+    # Space Complexity:O(1) since we are not creating or modifying any data structures
     def height(self):
         height = 0
         current = self.root
