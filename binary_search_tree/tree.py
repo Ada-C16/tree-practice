@@ -82,25 +82,58 @@ class Tree:
         tree = []
         return self.preorder_helper(self.root, tree)
 
-    # Time Complexity: 
-    # Space Complexity:     
-    def postorder(self):
-        pass
+    def postorder_helper(self, current, tree):
+        if current:
+            #left
+            self.postorder_helper(current.left, tree)
+            #right
+            self.postorder_helper(current.right, tree)
+            #current
+            tree.append({"key": current.key, "value": current.value})
 
-    # Time Complexity: 
-    # Space Complexity:     
+        return tree
+
+    # Time Complexity: O(n)
+    # Space Complexity: O(n)  
+    def postorder(self):
+        tree = []
+        return self.postorder_helper(self.root, tree)
+    def height_counter(self, current):
+        if not current:
+            return 0
+
+        return(max(self.height_counter(current.left), self.height_counter(current.right))) + 1
+
+    # Time Complexity: O(log n)
+    # Space Complexity: O(log n)
     def height(self):
-        pass
+        return self.height_counter(self.root)
 
 
 #   # Optional Method
 #   # Time Complexity: 
 #   # Space Complexity: 
     def bfs(self):
-        pass
+        values = []
+        queue = []
 
-        
+        if self.root:
+            queue.append(self.root)
 
+        while len(queue) > 0:
+            # Current becomes what was first item in queue
+            current = queue.pop(0)
+            if current.left:
+                queue.append(current.left)
+            if current.right:
+                queue.append(current.right)
+
+            values.append({
+                "key": current.key,
+                "value": current.value,
+            })
+
+        return values
 
 #   # Useful for printing
     def to_s(self):
