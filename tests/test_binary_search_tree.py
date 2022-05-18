@@ -25,6 +25,7 @@ def test_find_returns_none_for_empty_tree(empty_tree):
 
 def test_can_find_single_root_node(empty_tree):
     empty_tree.add(25, "Kari")
+    print(empty_tree.root.value)
     assert empty_tree.find(25) == "Kari"
 
 
