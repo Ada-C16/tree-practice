@@ -1,3 +1,6 @@
+from multiprocessing.dummy import current_process
+
+
 class TreeNode:
     def __init__(self, key, val = None):
         if val == None:
@@ -14,8 +17,7 @@ class Tree:
         self.root = None
 
     # Time Complexity: 0(log n)
-    # Space Complexity: 0(log n)
-    
+    # Space Complexity: 0(log n) 
     def add_helper(self, current_node, key, value):
         # helper takes advantage of recursive
         # if node is empty, return new node with key and value
@@ -49,15 +51,14 @@ class Tree:
                 current = current.left
         return None
 
+
     # Time Complexity: 0(n)
     # Space Complexity: 0(n)
-    
     def inorder_helper(self, current_node, items):
         if current_node != None:
             self.inorder_helper(current_node.left, items)
             items.append({"key": current_node.key, "value": current_node.value})
             self.inorder_helper(current_node.right, items)
-        
         
     def inorder(self):
         #list of items to be returned
@@ -65,19 +66,28 @@ class Tree:
         self.inorder_helper(self.root, items)
         return items
 
+
     # Time Complexity: 0(n)
     # Space Complexity: 0(n)    
     def preorder(self):
         pass
 
+
     # Time Complexity: 0(n)
     # Space Complexity: 0(n)  
-    
-    # def postorder_helper(self): 
+    def postorder_helper(self, current_node, items): 
+        if current_node:
+            self.postorder_helper(current_node.left, items)
+            self.postorder_helper(current_node.right, items)
+            items.append({"key": current_node.key, "value": current_node.value})
+        return items
       
-    # def postorder(self): 
-    #     items = []
-    #     self.postorder_helper(self.root, items)
+    def postorder(self): 
+        items = []
+        if self.root:
+            self.postorder_helper(self.root, items)
+        return items
+
 
     # Time Complexity: 0(n)
     # Space Complexity: 0(n)  
@@ -94,6 +104,7 @@ class Tree:
          
     def height(self):
         return self.height_helper(self.root)
+
 
 
 #   # Optional Method
