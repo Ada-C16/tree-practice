@@ -1,4 +1,5 @@
 from multiprocessing.dummy import current_process
+from typing import ItemsView
 
 
 class TreeNode:
@@ -61,16 +62,29 @@ class Tree:
             self.inorder_helper(current_node.right, items)
         
     def inorder(self):
-        #list of items to be returned
+        #list of items to be returned --> depth-first traversal sorted key values in an ascending order, Left,Current,Right
         items = []
         self.inorder_helper(self.root, items)
         return items
 
 
     # Time Complexity: 0(n)
-    # Space Complexity: 0(n)    
+    # Space Complexity: 0(n)   
+    def preorder_helper(self, current_node, items):
+        if current_node == None:
+            return items
+        else:
+            items.append({"key": current_node.key, "value": current_node.value})
+            self.preorder_helper(current_node.left, items)
+            self.preorder_helper(current_node.right, items)
+            return items
+     
     def preorder(self):
-        pass
+        #list of items to be returned --> depth-first traversal sorted current, left, right
+        items = []
+        if self.root:
+            self.preorder_helper(self.root, items)
+        return items
 
 
     # Time Complexity: 0(n)
@@ -83,6 +97,7 @@ class Tree:
         return items
       
     def postorder(self): 
+        #list of items to be returned --> depth-first traversal sorted left, right, current
         items = []
         if self.root:
             self.postorder_helper(self.root, items)
