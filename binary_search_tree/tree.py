@@ -71,14 +71,29 @@ class Tree:
         pass
 
     # Time Complexity: 0(n)
-    # Space Complexity: 0(n)    
-    def postorder(self): 
-        pass
+    # Space Complexity: 0(n)  
+    
+    # def postorder_helper(self): 
+      
+    # def postorder(self): 
+    #     items = []
+    #     self.postorder_helper(self.root, items)
 
-    # Time Complexity: 
-    # Space Complexity:     
+    # Time Complexity: 0(n)
+    # Space Complexity: 0(n)  
+    def height_helper(self, current_node):
+        # uses stack and recursion for each node in tree 
+        # plus one for the root node / the current node
+        if current_node != None:
+            height_left = self.height_helper(current_node.left)
+            height_right = self.height_helper(current_node.right)
+            return (max(height_left, height_right) + 1)
+        
+        else:
+            return 0
+         
     def height(self):
-        pass
+        return self.height_helper(self.root)
 
 
 #   # Optional Method
@@ -86,9 +101,6 @@ class Tree:
 #   # Space Complexity: 
     def bfs(self):
         pass
-
-        
-
 
 #   # Useful for printing
     def to_s(self):
