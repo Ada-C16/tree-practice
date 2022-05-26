@@ -27,26 +27,12 @@ class Tree:
             current_node.right = self.add_helper(current_node.right, key, value) 
         return current_node
             
-        # else:
-        #     parent = None
-        #     current = self.root
-        #     while current !=  None:
-        #         parent = current
-        #         if key <= current.key:
-        #             current = current.right
-        #         else:
-        #             current = current.left
-        #     if parent.key > key:
-        #         parent.left = TreeNode(key, value)       
-          
-    
     def add(self, key, value = None):
         if self.root == None:
             self.root = TreeNode(key, value)
         else:
             self.add_helper(self.root, key, value)
             
-     
 
     # Time Complexity: 0(log n)
     # Space Complexity: 0(log n)
@@ -65,8 +51,19 @@ class Tree:
 
     # Time Complexity: 0(n)
     # Space Complexity: 0(n)
+    
+    def inorder_helper(self, current_node, items):
+        if current_node != None:
+            self.inorder_helper(current_node.left, items)
+            items.append({"key": current_node.key, "value": current_node.value})
+            self.inorder_helper(current_node.right, items)
+        
+        
     def inorder(self):
-        pass
+        #list of items to be returned
+        items = []
+        self.inorder_helper(self.root, items)
+        return items
 
     # Time Complexity: 0(n)
     # Space Complexity: 0(n)    
