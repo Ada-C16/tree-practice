@@ -17,12 +17,40 @@ class Tree:
     # Time Complexity: 
     # Space Complexity: 
     def add(self, key, value = None):
-        pass
+        node = TreeNode(key, value)
+        if not self.root:
+            self.root = node
+            return self.root
+
+        current = self.root
+        previous = None
+        while current:
+            previous = current
+            if key <= current.key:
+                current = current.left
+            else:
+                current = current.right
+        if key <= previous.key:
+            previous.left = node
+        else:
+            previous.right = node
 
     # Time Complexity: 
     # Space Complexity: 
     def find(self, key):
-        pass
+        if not self.root:
+            return None
+        if self.root.key == key:
+            return self.root.value
+        current = self.root
+        while current:
+            if current.key == key:
+                return current.value
+            if key <= current.key:
+                current = current.left
+            else:
+                current = current.right
+        return None
 
     # Time Complexity: 
     # Space Complexity: 
