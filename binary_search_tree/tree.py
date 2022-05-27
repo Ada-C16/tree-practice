@@ -77,7 +77,19 @@ class Tree:
 #   # Time Complexity: 
 #   # Space Complexity: 
     def bfs(self):
-        pass
+        if not self.root:
+            return []
+        queue = [ self.root ]
+        values = []
+        while queue:
+            current = queue.pop(0)
+            # {'key': 5, 'value': 'Peter'}
+            values.append({'key': current.key, 'value': current.value})
+            if current.left:
+                queue.append(current.left)
+            if current.right:
+                queue.append(current.right)
+        return values
 
         
 
