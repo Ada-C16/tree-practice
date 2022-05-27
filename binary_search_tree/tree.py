@@ -15,8 +15,8 @@ class Tree:
     def __init__(self):
         self.root = None
 
-    # Time Complexity: 
-    # Space Complexity: 
+    # Time Complexity: O(log n)
+    # Space Complexity: O(1)
     def add(self, key, value = None):
         node = TreeNode(key, value)
         if not self.root:
@@ -44,8 +44,8 @@ class Tree:
     #     if not current.left and not current.right:
 
 
-    # Time Complexity: 
-    # Space Complexity: 
+    # Time Complexity: O(log n)
+    # Space Complexity: O(1)
     def find(self, key):
         if not self.root:
             return None
@@ -67,8 +67,8 @@ class Tree:
             nodes.append({'key': root.key, 'value': root.value})
             self.inorder_helper(root.right, nodes)
         
-    # Time Complexity: 
-    # Space Complexity: 
+    # Time Complexity: O(n) while n = number of nodes in BST
+    # Space Complexity: O(n)
     def inorder(self):
         # left, root, right
         if not self.root:
@@ -77,8 +77,6 @@ class Tree:
 
         self.inorder_helper(self.root, nodes)
         return nodes
-        # nodes.append({'key': current.key, 'value': current.value})
-        # this has to be recursive
 
     
     def preorder_helper(self, current, nodes):
@@ -88,8 +86,8 @@ class Tree:
             self.preorder_helper(current.right, nodes)
         return
         
-    # Time Complexity: 
-    # Space Complexity:     
+    # Time Complexity: O(n) n = number of nodes in BST
+    # Space Complexity: O(n)     
     def preorder(self):
         # root -> left -> right
         if not self.root:
@@ -104,9 +102,9 @@ class Tree:
             self.postorder_helper(current.left, nodes_list)
             self.postorder_helper(current.right, nodes_list)
             nodes_list.append({'key': current.key, 'value': current.value})
-            
-    # Time Complexity: 
-    # Space Complexity:     
+
+    # Time Complexity: O(n) n = number of nodes in BST
+    # Space Complexity: O(n)     
     def postorder(self):
         # left -> right -> root
         if not self.root:
@@ -115,15 +113,26 @@ class Tree:
         self.postorder_helper(self.root, nodes_list)
         return nodes_list
 
-    # Time Complexity: 
-    # Space Complexity:     
+
+    def height_helper(self, root):
+        if not root:
+            return 0
+        left_height = self.height_helper(root.left)
+        right_height = self.height_helper(root.right)
+        return 1 + max(left_height, right_height)
+        
+
+    # Time Complexity: O(n) and n = # of nodes in BST
+    # Space Complexity: O(n) ? not sure on this one 
     def height(self):
-        pass
+        if not self.root:
+            return 0
+        return self.height_helper(self.root)
 
 
-#   # Optional Method
-#   # Time Complexity: 
-#   # Space Complexity: 
+  # Optional Method
+  # Time Complexity: O(n) where n = number of nodes in BST
+  # Space Complexity: O(n)
     def bfs(self):
         if not self.root:
             return []
