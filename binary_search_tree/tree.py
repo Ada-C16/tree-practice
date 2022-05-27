@@ -11,6 +11,7 @@ class TreeNode:
 
 
 class Tree:
+    # # ITERATIVE
     def __init__(self):
         self.root = None
 
@@ -35,6 +36,14 @@ class Tree:
         else:
             previous.right = node
 
+    # RECURSIVE
+    # Time Complexity: 
+    # Space Complexity: 
+    # def add(self, key, value = None):
+    #     # base case
+    #     if not current.left and not current.right:
+
+
     # Time Complexity: 
     # Space Complexity: 
     def find(self, key):
@@ -52,20 +61,59 @@ class Tree:
                 current = current.right
         return None
 
+    def inorder_helper(self, root, nodes):
+        if root:
+            self.inorder_helper(root.left, nodes)
+            nodes.append({'key': root.key, 'value': root.value})
+            self.inorder_helper(root.right, nodes)
+        
     # Time Complexity: 
     # Space Complexity: 
     def inorder(self):
-        pass
+        # left, root, right
+        if not self.root:
+            return []
+        nodes = []
 
+        self.inorder_helper(self.root, nodes)
+        return nodes
+        # nodes.append({'key': current.key, 'value': current.value})
+        # this has to be recursive
+
+    
+    def preorder_helper(self, current, nodes):
+        if current:
+            nodes.append({'key': current.key, 'value': current.value})
+            self.preorder_helper(current.left, nodes)
+            self.preorder_helper(current.right, nodes)
+        return
+        
     # Time Complexity: 
     # Space Complexity:     
     def preorder(self):
-        pass
+        # root -> left -> right
+        if not self.root:
+            return []
+        nodes_list = []
+        self.preorder_helper(self.root, nodes_list)
+        return nodes_list
 
+
+    def postorder_helper(self, current, nodes_list):
+        if current:
+            self.postorder_helper(current.left, nodes_list)
+            self.postorder_helper(current.right, nodes_list)
+            nodes_list.append({'key': current.key, 'value': current.value})
+            
     # Time Complexity: 
     # Space Complexity:     
     def postorder(self):
-        pass
+        # left -> right -> root
+        if not self.root:
+            return []
+        nodes_list = []
+        self.postorder_helper(self.root, nodes_list)
+        return nodes_list
 
     # Time Complexity: 
     # Space Complexity:     
