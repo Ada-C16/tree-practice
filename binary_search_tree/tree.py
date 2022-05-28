@@ -123,10 +123,34 @@ class Tree:
 
 
 #   # Optional Method
-#   # Time Complexity: 
-#   # Space Complexity: 
+#   # Time Complexity: O(n)
+#   # Space Complexity: O(n)
+
+    def bfs_helper(self, current_node, sub_list):
+        if current_node.left:
+            sub_list.append(current_node.left)
+        if current_node.right:
+            sub_list.append(current_node.right)
+        
+    
     def bfs(self):
-        pass
+        # uses queues to create sublists for each level, pops off elements from queue from left to right until sublist is empty to creates list, then adds children of each element to queue as popping off, repeats,
+        # recursion for each level
+        items = []
+        sub_list = []
+        
+        if not self.root:
+            return items
+        
+        items.append({"key": self.root.key, "value": self.root.value})
+        self.bfs_helper(self.root, sub_list)
+        
+        while sub_list:
+            current_node = sub_list.pop(0)
+            items.append({"key": current_node.key, "value": current_node.value})
+            self.bfs_helper(current_node, sub_list)
+        return items
+    
 
 #   # Useful for printing
     def to_s(self):
