@@ -39,7 +39,18 @@ class Tree:
     # Time Complexity: 
     # Space Complexity: 
     def find(self, key):
-        pass
+        if self.root == None:
+            return None
+        current = self.root
+        while current != None:
+            if current.key == key:
+                return current.value
+            elif current.key < key:
+                current = current.right
+            else:
+                current = current.left
+        return None
+
 
     # Time Complexity: 
     # Space Complexity: 
