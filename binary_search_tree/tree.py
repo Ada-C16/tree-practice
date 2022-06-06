@@ -14,10 +14,27 @@ class Tree:
     def __init__(self):
         self.root = None
 
-    # Time Complexity: 
-    # Space Complexity: 
+    # Time Complexity: O(log N) or O(n)
+    # Space Complexity: O(n)
+
+    def insert_node_helper(self, current_node, key, value):
+        if current_node == None:
+            return TreeNode(key, value)
+
+        if key < current_node.key:
+            current_node.left = self.insert_node_helper(current_node.left, key, value)
+        else:
+            current_node.right = self.insert_node_helper(current_node.right, key, value)
+        return current_node
+
     def add(self, key, value = None):
-        pass
+        # BST is empty
+        if self.root is None:
+            self.root = TreeNode(key, value)
+
+        # BST is not empty
+        self.insert_node_helper(self.root, key, value)
+        
 
     # Time Complexity: 
     # Space Complexity: 
