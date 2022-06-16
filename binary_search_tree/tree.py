@@ -1,3 +1,5 @@
+import collections
+from collections import deque
 class TreeNode:
     def __init__(self, key, val = None):
         if val == None:
@@ -100,8 +102,19 @@ class Tree:
     # Time Complexity:
     # Space Complexity:
     def bfs(self):
-        pass
-
+        visited = []
+        if self.root is None:
+            return visited
+        q = collections.deque()
+        q.append(self.root)
+        while q:
+            curr = q.popleft()
+            visited.append({"key": curr.key, "value": curr.value})
+            if curr.left is not None:
+                q.append(curr.left)
+            if curr.right is not None:
+                q.append(curr.right)
+        return visited
 
 
 
