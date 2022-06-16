@@ -1,4 +1,3 @@
-import collections
 from collections import deque
 class TreeNode:
     def __init__(self, key, val = None):
@@ -105,7 +104,7 @@ class Tree:
         visited = []
         if self.root is None:
             return visited
-        q = collections.deque()
+        q = deque()
         q.append(self.root)
         while q:
             curr = q.popleft()
