@@ -36,8 +36,8 @@ class Tree:
         self.insert_node_helper(self.root, key, value)
         
 
-    # Time Complexity: 
-    # Space Complexity: 
+    # Time Complexity: O(log N) or O(n)
+    # Space Complexity: O(n) 
     def find(self, key):
         if self.root == None:
             return None
@@ -54,18 +54,40 @@ class Tree:
 
     # Time Complexity: 
     # Space Complexity: 
+    def inorder_helper(self, current, result):
+        if current is not None:
+            self.inorder_helper(current.left, result)
+            result.append({'key': current.key, 'value': current.value})
+            self.inorder_helper(current.right, result)
     def inorder(self):
-        pass
+        result = []
+        self.inorder_helper(self.root, result)
+        return result        
 
     # Time Complexity: 
-    # Space Complexity:     
+    # Space Complexity: 
+    def preorder_helper(self, current, result):
+        if current:
+            result.append({"key": current.key, "value": current.value}) 
+            self.preorder_helper(current.left, result)
+            self.preorder_helper(current.right, result)   
     def preorder(self):
-        pass
+        result = []
+        self.preorder_helper(self.root, result)
+        return result
+
 
     # Time Complexity: 
-    # Space Complexity:     
+    # Space Complexity:
+    def postorder_helper(self, current, result):
+        if current:
+            self.postorder_helper(current.left, result)
+            self.postorder_helper(current.right, result)
+            result.append({"key": current.key, "value": current.value})     
     def postorder(self):
-        pass
+        result = []
+        self.postorder_helper(self.root, result)
+        return result
 
     # Time Complexity: 
     # Space Complexity:     
@@ -76,8 +98,6 @@ class Tree:
 #   # Optional Method
 #   # Time Complexity: 
 #   # Space Complexity: 
-    def bfs(self):
-        pass
 
         
 
