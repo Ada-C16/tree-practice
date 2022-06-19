@@ -59,6 +59,7 @@ class Tree:
             self.inorder_helper(current.left, result)
             result.append({'key': current.key, 'value': current.value})
             self.inorder_helper(current.right, result)
+            
     def inorder(self):
         result = []
         self.inorder_helper(self.root, result)
@@ -90,16 +91,37 @@ class Tree:
         return result
 
     # Time Complexity: 
-    # Space Complexity:     
+    # Space Complexity: 
+    def height_helper(self, current):
+        if current:
+            height_left = self.height_helper(current.left)
+            height_right = self.height_helper(current.right)
+            return max(height_left, height_right)+1    
     def height(self):
-        pass
+        if self.root == None:
+            return 0
+        return self.height_helper(self.root)
 
 
 #   # Optional Method
 #   # Time Complexity: 
 #   # Space Complexity: 
 
-        
+    def bfs(self):
+        result = []
+
+        if self.root == None:
+            return result
+
+        queue = [self.root]
+        while queue:
+            current = queue.pop(0)
+            result.append({"key": current.key, "value": current.value})
+            if current.left:
+                queue.append(current.left)
+            if current.right:
+                queue.append(current.right)
+        return result
 
 
 #   # Useful for printing
