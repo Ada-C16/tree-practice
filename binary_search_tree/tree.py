@@ -52,34 +52,38 @@ class Tree:
         return None
 
 
-    # Time Complexity: 
-    # Space Complexity: 
+    # Time Complexity: O(n)
+    # Space Complexity: O(n)
     def inorder_helper(self, current, result):
-        if current is not None:
+        if current is None:
+            return result
+        else:
             self.inorder_helper(current.left, result)
             result.append({'key': current.key, 'value': current.value})
             self.inorder_helper(current.right, result)
+            return result
             
     def inorder(self):
         result = []
-        self.inorder_helper(self.root, result)
-        return result        
+        # result_value = self.inorder_helper(self.root, result)
+        return self.inorder_helper(self.root, result)        
 
-    # Time Complexity: 
-    # Space Complexity: 
+    # Time Complexity: O(n)
+    # Space Complexity: O(n)
     def preorder_helper(self, current, result):
         if current:
             result.append({"key": current.key, "value": current.value}) 
             self.preorder_helper(current.left, result)
-            self.preorder_helper(current.right, result)   
+            self.preorder_helper(current.right, result) 
+        return result
     def preorder(self):
         result = []
-        self.preorder_helper(self.root, result)
-        return result
+        # self.preorder_helper(self.root, result)
+        return self.preorder_helper(self.root, result)
 
 
-    # Time Complexity: 
-    # Space Complexity:
+    # Time Complexity: O(n)
+    # Space Complexity: O(n)
     def postorder_helper(self, current, result):
         if current:
             self.postorder_helper(current.left, result)
@@ -90,22 +94,23 @@ class Tree:
         self.postorder_helper(self.root, result)
         return result
 
-    # Time Complexity: 
-    # Space Complexity: 
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
     def height_helper(self, current):
+        if current == None:
+            return 0
         if current:
             height_left = self.height_helper(current.left)
             height_right = self.height_helper(current.right)
             return max(height_left, height_right)+1    
     def height(self):
-        if self.root == None:
-            return 0
+        
         return self.height_helper(self.root)
 
 
 #   # Optional Method
-#   # Time Complexity: 
-#   # Space Complexity: 
+#   # Time Complexity: O(n)
+#   # Space Complexity: O(n)
 
     def bfs(self):
         result = []
