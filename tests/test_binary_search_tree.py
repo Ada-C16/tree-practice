@@ -1,3 +1,4 @@
+from unittest import skip
 import pytest
 from binary_search_tree.tree import Tree
 
@@ -202,11 +203,11 @@ def test_will_report_height_of_unbalanced_tree():
 
     assert unbalanced_tree.height() == 5
 
-
+@pytest.mark.skip
 def test_bfs_with_empty_tree(empty_tree):
     assert empty_tree.bfs() == []
 
-
+@pytest.mark.skip
 def test_bfs_with_tree_with_nodes(tree_with_nodes):
     expected_answer = [
         {
