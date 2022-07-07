@@ -84,8 +84,8 @@ class Tree:
                 "key" : current_node.key,
                 "value" : current_node.value,
             })
-            self.inorder_helper(current_node.left, node_list)
-            self.inorder_helper(current_node.right, node_list)
+            self.preorder_helper(current_node.left, node_list)
+            self.preorder_helper(current_node.right, node_list)
         return node_list
 
     # Time Complexity: O(n)
@@ -97,8 +97,8 @@ class Tree:
         if node_list == None:
             node_list = []
         if current_node:
-            self.inorder_helper(current_node.left, node_list)
-            self.inorder_helper(current_node.right, node_list)
+            self.postorder_helper(current_node.left, node_list)
+            self.postorder_helper(current_node.right, node_list)
             node_list.append({
                 "key" : current_node.key,
                 "value" : current_node.value,
