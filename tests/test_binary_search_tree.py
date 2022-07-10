@@ -25,6 +25,7 @@ def test_find_returns_none_for_empty_tree(empty_tree):
 
 def test_can_find_single_root_node(empty_tree):
     empty_tree.add(25, "Kari")
+
     assert empty_tree.find(25) == "Kari"
 
 
@@ -237,3 +238,6 @@ def test_bfs_with_tree_with_nodes(tree_with_nodes):
 
     answer = tree_with_nodes.bfs()
     assert answer == expected_answer
+
+def tests_by_vange(tree_with_nodes):
+    pass
