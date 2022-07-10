@@ -17,7 +17,14 @@ class Tree:
     # Time Complexity: 
     # Space Complexity: 
     def add(self, key, value = None):
-        pass
+        if not self.root:
+            self.root = TreeNode(key, value)
+            return self.root
+        if key <= self.root.key:
+            self.root.left = self.root.add(key, value)
+        elif key > self.root.key:
+            self.root.right = self.root.add(key, value) 
+    #this doesn't have a return value
 
     # Time Complexity: 
     # Space Complexity: 
