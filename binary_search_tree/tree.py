@@ -41,16 +41,18 @@ class Tree:
         while current != None:
             if current.key == key:
                 return current.value
-            elif  current.key > key: 
+            elif  current.key >= key: 
                 current = current.left
-            elif current.key < key:
+            else:
                 current = current.right
         return None
 
     # Time Complexity: 
     # Space Complexity: 
     def inorder(self):
-        pass
+        if self.root == None:
+            return []
+
 
     # Time Complexity: 
     # Space Complexity:     

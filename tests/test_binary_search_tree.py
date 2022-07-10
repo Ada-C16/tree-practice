@@ -50,7 +50,6 @@ def test_inorder_with_empty_tree(empty_tree):
     answer = empty_tree.inorder()
     assert empty_tree.inorder() == []
 
-
 def test_inorder_with_nodes(tree_with_nodes):
     expected_answer = [
         {
@@ -239,5 +238,6 @@ def test_bfs_with_tree_with_nodes(tree_with_nodes):
     answer = tree_with_nodes.bfs()
     assert answer == expected_answer
 
-def tests_by_vange(tree_with_nodes):
-    pass
+# def tests_by_vange(tree_with_nodes):
+#     tree_with_nodes.inorder() == 1
+#     pass
