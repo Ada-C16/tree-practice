@@ -1,7 +1,6 @@
 import pytest
 from binary_search_tree.tree import Tree
 
-
 @pytest.fixture()
 def empty_tree() -> Tree():
     return Tree()
@@ -237,7 +236,3 @@ def test_bfs_with_tree_with_nodes(tree_with_nodes):
 
     answer = tree_with_nodes.bfs()
     assert answer == expected_answer
-
-# def tests_by_vange(tree_with_nodes):
-#     tree_with_nodes.inorder() == 1
-#     pass
