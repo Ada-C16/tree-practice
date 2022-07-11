@@ -1,7 +1,6 @@
 import pytest
 from binary_search_tree.tree import Tree
 
-
 @pytest.fixture()
 def empty_tree() -> Tree():
     return Tree()
@@ -25,6 +24,7 @@ def test_find_returns_none_for_empty_tree(empty_tree):
 
 def test_can_find_single_root_node(empty_tree):
     empty_tree.add(25, "Kari")
+
     assert empty_tree.find(25) == "Kari"
 
 
@@ -48,7 +48,6 @@ def test_find_returns_none_for_values_not_in_tree(tree_with_nodes):
 def test_inorder_with_empty_tree(empty_tree):
     answer = empty_tree.inorder()
     assert empty_tree.inorder() == []
-
 
 def test_inorder_with_nodes(tree_with_nodes):
     expected_answer = [
