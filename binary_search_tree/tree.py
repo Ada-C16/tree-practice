@@ -93,8 +93,8 @@ class Tree:
         preorder_helper(self.root)
         return result
 
-    # Time Complexity: 
-    # Space Complexity:     
+    # Time Complexity:  O(n)
+    # Space Complexity:  O(n)
     def postorder(self):
         result = []
         def postorder_helper(node):
@@ -111,8 +111,8 @@ class Tree:
         postorder_helper(self.root)
         return result
     
-    # Time Complexity: 
-    # Space Complexity:     
+    # Time Complexity: O(n)
+    # Space Complexity:   O(1)
     def height(self):
         if self.root == None:
             return 0
@@ -129,8 +129,8 @@ class Tree:
         return height_helper(self.root, 1)
 
 #   # Optional Method
-#   # Time Complexity: 
-#   # Space Complexity: 
+#   # Time Complexity: O(n)
+#   # Space Complexity: O(n)
     def bfs(self):
         cur = self.root
         if cur == None:
