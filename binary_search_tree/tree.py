@@ -20,7 +20,7 @@ class Tree:
         self.root = None
 
     # Time Complexity: O(log n) if ordered, O(n) if unordered
-    # Space Complexity: O(n)
+    # Space Complexity: O(1)
     def add(self, key, value=None):
         node = TreeNode(key, value)
         if self.root is None:
