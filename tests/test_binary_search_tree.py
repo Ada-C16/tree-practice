@@ -20,7 +20,7 @@ def tree_with_nodes(empty_tree) -> Tree():
 
 
 def test_find_returns_none_for_empty_tree(empty_tree):
-    assert empty_tree.find(5) == None
+    assert empty_tree.find(5) is None
 
 
 def test_can_find_single_root_node(empty_tree):
@@ -42,12 +42,12 @@ def test_can_find_leaf_nodes(tree_with_nodes):
 
 
 def test_find_returns_none_for_values_not_in_tree(tree_with_nodes):
-    assert tree_with_nodes.find(6) == None
+    assert tree_with_nodes.find(6) is None
 
 
 def test_inorder_with_empty_tree(empty_tree):
     answer = empty_tree.inorder()
-    assert empty_tree.inorder() == []
+    assert answer == []
 
 
 def test_inorder_with_nodes(tree_with_nodes):
